@@ -17,12 +17,12 @@ This framework implements the research described in "AI Safety Consistency throu
 ### 1. Dataset Curation & TATER Framework (`dataset.py`)
 - **K-Means Clustering**: Ensures diverse, non-redundant prompt selection
 - **TATER Pipeline**:
-  - **Translate**: Initial translation using Translategemma or fallback LLM
-  - **Estimate**: Quality estimation via LLM against safety-specific requirements
+  - **Translate**: Translategemma by default, with optional deep-translator fallback or a custom LLM
+  - **Estimate**: Quality estimation via LLM (when enabled) against safety-specific requirements
   - **Refine**: Iterative refinement preserving cultural nuances and borderline cases
 - **Multi-language Support**: Handles diverse scripts (Latin, Greek, Ethiopic, Tibetan)
 
-**Implementation note:** In this codebase, the Translate step performs the actual translation. The Estimate/Refine steps are currently lightweight placeholders (heuristic scores and optional refinement), so the pipeline behaves close to straight translation unless you extend those methods.
+**Implementation note:** Translate runs through Translategemma by default and can fall back to deep-translator or a custom LLM. Estimate/Refine use an LLM judge when `tater_use_llm` is enabled; otherwise they fall back to heuristics.
 
 ### 2. Evaluation Framework (`evaluation.py`)
 - **Direct Evaluation (MCQ)**:
@@ -90,7 +90,7 @@ pip install -r requirements.txt
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 ```
 
-**Translation:** The framework uses `google/translategemma-4b-it` for real translations (downloaded via Hugging Face) with no API key needed, and can fall back to legacy translation if installed.
+**Translation:** The framework uses `google/translategemma-4b-it` for real translations (downloaded via Hugging Face) with no API key needed, and can fall back to deep-translator if enabled and installed.
 
 ## Usage
 
@@ -223,7 +223,7 @@ config.open_ended_per_domain = 30
 
 # Clustering parameters
 config.use_clustering = True
-config.embedding_model = "sentence-transformers/mGTE-base"
+config.embedding_model = "Alibaba-NLP/gte-multilingual-base"
 ```
 
 ## Output Structure
