@@ -425,28 +425,6 @@ This framework is designed to support research on:
 - Cultural nuance in safety evaluation
 - Translation vs. Transcreation quality impact
 
-## Citation
-
-If you use this framework in your research, please cite:
-
-```bibtex
-@article{nguyen2024multilingual,
-  title={AI Safety Consistency through Different Languages},
-  author={Nguyen, Hiep},
-  school={Villanova University},
-  year={2024}
-}
-```
-
-## References
-
-Key papers and frameworks:
-
-- **LinguaSafe**: Ning et al. (2025) - Task-Aware Translate, Estimate, Refine framework
-- **CValues**: Sun et al. (2023) - Safety evaluation framework
-- **Multilingual LLM Safety**: Berger et al. (2025), Peppin et al. (2025)
-- **MQM Framework**: Lommel et al. (2014) - Translation quality metrics
-
 ## License
 
 This project is provided as-is for research purposes. See individual dependencies for their licenses.
